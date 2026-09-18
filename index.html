@@ -493,17 +493,35 @@
         <polygon points="340,370 340,90 600,90 600,370" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
         <text x="470" y="115" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="700">第二段：垂直墙区</text>
         <text x="470" y="135" text-anchor="middle" fill="rgba(96,165,250,0.7)" font-size="11">5m宽 · 角度 90° · 基础线路</text>
-        <text x="470" y="155" text-anchor="middle" fill="rgba(96,165,250,0.45)" font-size="10">综合运用 · 线路丰富 · 定期更换定线</text>
+        <text x="470" y="155" text-anchor="middle" fill="rgba(96,165,250,0.45)" font-size="10">可设定多种线路风格 · 颜色编码 · 定期更换</text>
         <!-- 90° indicator -->
         <path d="M340 350 L360 350 L360 370" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
         <text x="370" y="365" fill="#60a5fa" font-size="10">90°</text>
-        <!-- Holds -->
-        <g fill="rgba(96,165,250,0.25)">
-          <circle cx="380" cy="330" r="5"/><circle cx="420" cy="290" r="6"/><circle cx="460" cy="250" r="5"/>
-          <circle cx="500" cy="210" r="6"/><circle cx="540" cy="175" r="5"/><circle cx="570" cy="140" r="5"/>
-          <circle cx="400" cy="190" r="4"/><circle cx="480" cy="155" r="4"/><circle cx="560" cy="230" r="5"/>
-          <circle cx="440" cy="310" r="4"/><circle cx="520" cy="280" r="5"/>
+        <!-- Color-coded route style holds (4 different route styles) -->
+        <!-- Route A: 技术型 - green, small crimps, precise footwork -->
+        <g fill="rgba(52,211,153,0.6)">
+          <circle cx="365" cy="340" r="4"/><circle cx="385" cy="300" r="3.5"/><circle cx="370" cy="260" r="4"/>
+          <circle cx="395" cy="220" r="3.5"/><circle cx="378" cy="180" r="4"/><circle cx="400" cy="145" r="3.5"/>
         </g>
+        <text x="385" y="358" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">技术型</text>
+        <!-- Route B: 力量型 - red, big holds, powerful moves -->
+        <g fill="rgba(248,113,113,0.6)">
+          <circle cx="430" cy="335" r="6"/><circle cx="455" cy="285" r="6"/><circle cx="440" cy="235" r="5.5"/>
+          <circle cx="465" cy="190" r="6"/><circle cx="448" cy="150" r="5.5"/>
+        </g>
+        <text x="450" y="358" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">力量型</text>
+        <!-- Route C: 动态/协调型 - yellow, dyno moves, coordination -->
+        <g fill="rgba(251,191,36,0.6)">
+          <circle cx="500" cy="340" r="5"/><circle cx="530" cy="290" r="5"/><circle cx="510" cy="240" r="4.5"/>
+          <circle cx="545" cy="200" r="5"/><circle cx="520" cy="160" r="4.5"/><circle cx="555" cy="135" r="5"/>
+        </g>
+        <text x="530" y="358" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">动态型</text>
+        <!-- Route D: 指力/耐力型 - purple, small edges, endurance -->
+        <g fill="rgba(167,139,250,0.6)">
+          <circle cx="575" cy="335" r="3.5"/><circle cx="585" cy="295" r="3"/><circle cx="570" cy="255" r="3.5"/>
+          <circle cx="590" cy="215" r="3"/><circle cx="578" cy="175" r="3.5"/><circle cx="595" cy="140" r="3"/>
+        </g>
+        <text x="585" y="358" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">指力型</text>
 
         <!-- ===== Section 3: Overhang with roof (right, 5m) - ONLY overhang ===== -->
         <!-- Vertical lower part -->
@@ -545,6 +563,180 @@
   </div>
 </section>
 
+<!-- ===== 线路种类与标注系统 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">线路种类与标注系统</h2>
+    <p class="section-desc">岩壁区域按角度/形态分区，线路用颜色编码+编号系统标注，不预设固定V等级，方便后续定期更换定线、增加新线路风格。当前以新手为主，基础线路占比大，预留进阶扩展空间。</p>
+
+    <!-- 岩壁区域分类 -->
+    <h3 style="font-size:16px;font-weight:700;margin:24px 0 14px;color:var(--text);">一、岩壁区域分类（按角度/形态）</h3>
+    <div style="overflow-x:auto;">
+      <table class="equip-table">
+        <colgroup>
+          <col style="width:18%">
+          <col style="width:12%">
+          <col style="width:12%">
+          <col style="width:14%">
+          <col style="width:44%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>区域名称</th>
+            <th>位置</th>
+            <th>宽度</th>
+            <th>角度</th>
+            <th>特点与线路风格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--green-dim);color:var(--green);">静态斜面区 Slab</span></td>
+            <td>北墙左段</td>
+            <td>5m</td>
+            <td>~85°</td>
+            <td>墙面后倾，重心控制和脚法为主，大触点，新手友好。可设定脚法精准线、平衡线、慢爬线</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--blue-dim);color:var(--blue);">垂直墙区 Vertical</span></td>
+            <td>北墙中段</td>
+            <td>5m</td>
+            <td>90°</td>
+            <td>标准垂直面，线路风格最丰富，可设定技术型、力量型、动态型、指力型、耐力型等多种风格，定期更换定线</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">屋檐仰角区 Overhang</span></td>
+            <td>北墙右段</td>
+            <td>5m</td>
+            <td>~120°</td>
+            <td>全馆唯一仰角，带屋檐探出0.8m，核心力量和身体张力为主，进阶挑战。可设定力量线、锁定线、身体控制线</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:rgba(45,212,191,0.12);color:#2dd4bf;">转角岩壁 Arete</span></td>
+            <td>西墙</td>
+            <td>~4m</td>
+            <td>90°</td>
+            <td>两面墙交界的棱线，侧身动作和反向发力，增加线路多样性。可设定侧身线、倒攀线、脚跟钩线</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--purple-dim);color:var(--purple);">K板训练区 K-Board</span></td>
+            <td>东墙</td>
+            <td>2.4m</td>
+            <td>可调</td>
+            <td>标准Kilter Board，APP内置数万条共享线路，LED显示，角度可调（15°/40°），无需请人定线</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 线路标注系统 -->
+    <h3 style="font-size:16px;font-weight:700;margin:32px 0 14px;color:var(--text);">二、线路标注系统（颜色编码+编号）</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">
+      <div class="note-card">
+        <h4 style="color:var(--accent);">颜色编码</h4>
+        <p>每条线路使用同一种颜色的岩点（或同色胶带标记起点/终点），颜色代表<b>线路区分</b>而非难度。同色岩点=同一条线路，攀爬者沿同色点完成线路。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--accent);">编号系统</h4>
+        <p>线路编号=区域缩写+序号：<b>S-01</b>（Slab第1条）、<b>V-03</b>（Vertical第3条）、<b>O-02</b>（Overhang第2条）、<b>A-01</b>（Arete第1条）。方便记录和沟通。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--accent);">难度标注</h4>
+        <p>不预设固定V等级，采用<b>星级制</b>（★入门 / ★★简单 / ★★★中等 / ★★★★较难 / ★★★★★挑战），或在线路起点旁贴色标+难度标签。后续水平提升后可灵活调整难度标注。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--accent);">线路信息卡</h4>
+        <p>每条线路起点旁贴小卡片：线路编号、线路名称（可选）、难度星级、线路风格标签（技术/力量/动态/指力）、定线人、定线日期。定期更换时更新卡片。</p>
+      </div>
+    </div>
+
+    <!-- 线路风格种类 -->
+    <h3 style="font-size:16px;font-weight:700;margin:8px 0 14px;color:var(--text);">三、可设定的线路风格种类</h3>
+    <div style="overflow-x:auto;">
+      <table class="equip-table">
+        <colgroup>
+          <col style="width:15%">
+          <col style="width:20%">
+          <col style="width:65%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>风格类型</th>
+            <th>适合区域</th>
+            <th>特点描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="color:#34d399;font-weight:600;">技术型</span></td>
+            <td>Slab / Vertical</td>
+            <td>小触点、精确脚法、身体重心微调，考验技巧和阅读线路能力</td>
+          </tr>
+          <tr>
+            <td><span style="color:#f87171;font-weight:600;">力量型</span></td>
+            <td>Vertical / Overhang</td>
+            <td>大触点、大发力动作、引体和锁定，考验上肢和核心力量</td>
+          </tr>
+          <tr>
+            <td><span style="color:#fbbf24;font-weight:600;">动态型</span></td>
+            <td>Vertical / Overhang</td>
+            <td>跳跃（Dyno）、交叉手、身体摆动，考验爆发力和空间判断</td>
+          </tr>
+          <tr>
+            <td><span style="color:#a78bfa;font-weight:600;">指力型</span></td>
+            <td>Vertical / 指力板</td>
+            <td>小边缘（Crimp）、半口袋（Half-crimp）、开放式抓握，考验手指力量和耐力</td>
+          </tr>
+          <tr>
+            <td><span style="color:#60a5fa;font-weight:600;">耐力型</span></td>
+            <td>Vertical / Slab</td>
+            <td>多动作、长线路、持续发力，考验肌肉耐力和呼吸节奏，适合新手积累里程</td>
+          </tr>
+          <tr>
+            <td><span style="color:#2dd4bf;font-weight:600;">协调型</span></td>
+            <td>Arete / Vertical</td>
+            <td>脚跟钩（Heel Hook）、脚尖钩（Toe Hook）、侧身、倒攀，考验身体协调性和柔韧性</td>
+          </tr>
+          <tr>
+            <td><span style="color:#f472b6;font-weight:600;">入门教学线</span></td>
+            <td>Slab / Vertical 底部</td>
+            <td>超大触点、动作简单、高度低，专为零基础新手设计，帮助建立信心和基本动作模式</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 后续扩展可能性 -->
+    <h3 style="font-size:16px;font-weight:700;margin:32px 0 14px;color:var(--text);">四、后续扩展可能性（预留空间）</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+      <div class="note-card">
+        <h4 style="color:var(--green);">增加训练板</h4>
+        <p>东墙K板旁可预留位置，后续增加 Moon Board、Tension Board、System Wall（系统板）等训练工具，丰富专项训练能力。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--blue);">可调角度墙</h4>
+        <p>预算允许时，可将垂直墙部分区域改为可调角度墙（Adjustable Wall），通过液压或机械结构调整角度（0°~45°仰角），一条墙体验多种角度。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--accent);">Campus 板</h4>
+        <p>可在指力板区域旁增加 Campus Board（引体向上训练板），用于爆发力和引体力量训练，适合进阶玩家。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--purple);">亲子/儿童线路</h4>
+        <p>Slab区底部可设定儿童专用线路（更低高度、更大触点、更简单动作），支持亲子活动和俱乐部纳新。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--teal);">定线轮换机制</h4>
+        <p>建议每1-2个月更换部分线路（每次更换30%-50%），保持新鲜感。垂直墙区域最适合频繁换线，Slab和仰角区可相对稳定。</p>
+      </div>
+      <div class="note-card">
+        <h4 style="color:var(--pink);">线路记录系统</h4>
+        <p>可用飞书多维表格记录所有线路：编号、名称、区域、风格、难度、定线人、上线日期、状态（在线/下线）。方便管理和统计攀爬数据。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 实景效果图 ===== -->
 <section class="section" style="padding-top:0;">
   <div class="container">
@@ -552,13 +744,13 @@
     <p class="section-desc">基于规划方案生成的室内抱石馆实景效果参考，展示岩壁仰角、保护垫、功能区和整体氛围。实际效果以供应商设计方案和现场施工为准。</p>
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
       <img src="assets/scene-render.jpg" alt="抱石馆实景效果图" style="width:100%;display:block;object-fit:cover;"/>
-      <div style="padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:24px;flex-wrap:wrap;">
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#34d399;font-weight:600;">北墙左段</span>：静态/斜面区（新手友好）</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#60a5fa;font-weight:600;">北墙中段</span>：垂直墙区（基础线路）</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--accent);font-weight:600;">北墙右段</span>：屋檐仰角区（唯一仰角）</div>
+      <div style="padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#34d399;font-weight:600;">北墙左段</span>：静态斜面区（大岩点·新手友好）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#60a5fa;font-weight:600;">北墙中段</span>：垂直墙区（四色线路·技术/力量/动态/指力）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--accent);font-weight:600;">北墙右段</span>：屋檐仰角区（唯一仰角·木质屋檐）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--purple);font-weight:600;">右侧墙</span>：K板训练区（LED灯条·APP线路）</div>
         <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--green);font-weight:600;">左前方</span>：拉伸+指力板综合区</div>
         <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">右前方</span>：收纳区+洗手池</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--purple);font-weight:600;">右侧墙</span>：K板训练区</div>
         <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--pink);font-weight:600;">前景过道</span>：露营椅+小推车（垫外侧）</div>
       </div>
     </div>
