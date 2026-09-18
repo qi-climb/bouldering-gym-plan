@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公司抱石馆空间规划方案 | 150㎡</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧗</text></svg>">
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-card: #181b24;
+    --bg-card-hover: #1e2230;
+    --border: #2a2e3d;
+    --text: #e8eaf0;
+    --text-secondary: #9ba1b2;
+    --text-muted: #6b7184;
+    --accent: #f59e0b;
+    --accent-dim: rgba(245,158,11,0.15);
+    --green: #34d399;
+    --green-dim: rgba(52,211,153,0.12);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96,165,250,0.12);
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,0.12);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.12);
+    --teal: #2dd4bf;
+    --teal-dim: rgba(45,212,191,0.12);
+    --pink: #f472b6;
+    --pink-dim: rgba(244,114,182,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(245,158,11,0.06) 0%, transparent 100%);
+  }
+  .hero-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 680px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-value { font-size: 28px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Section */
+  .section { padding: 48px 0; }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 22px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    padding-left: 14px;
+  }
+
+  /* Floor Plan */
+  .floorplan-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    overflow-x: auto;
+  }
+  .floorplan-svg {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: block;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* Wall Elevation */
+  .elevation-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    overflow-x: auto;
+  }
+
+  /* Area Cards */
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 20px;
+  }
+  .area-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .area-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .area-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+  }
+  .area-card.climb::before { background: var(--accent); }
+  .area-card.kboard::before { background: var(--purple); }
+  .area-card.train::before { background: var(--blue); }
+  .area-card.stretch::before { background: var(--green); }
+  .area-card.storage::before { background: var(--teal); }
+  .area-card.rest::before { background: var(--pink); }
+  .area-card.wash::before { background: var(--red); }
+
+  .area-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .area-name {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .area-size {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .climb .area-size { background: var(--accent-dim); color: var(--accent); }
+  .kboard .area-size { background: var(--purple-dim); color: var(--purple); }
+  .train .area-size { background: var(--blue-dim); color: var(--blue); }
+  .stretch .area-size { background: var(--green-dim); color: var(--green); }
+  .storage .area-size { background: var(--teal-dim); color: var(--teal); }
+  .rest .area-size { background: var(--pink-dim); color: var(--pink); }
+  .wash .area-size { background: var(--red-dim); color: var(--red); }
+
+  .area-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+  .area-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .area-features li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-left: 18px;
+    position: relative;
+  }
+  .area-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Equipment Table */
+  .equip-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .equip-table th {
+    background: rgba(245,158,11,0.08);
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+  .equip-table td {
+    padding: 13px 18px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+  .equip-table tr:last-child td { border-bottom: none; }
+  .equip-table tr:hover td { background: var(--bg-card-hover); }
+  .equip-cat {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Notes */
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .note-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .note-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .note-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 26px; }
+    .hero-stats { gap: 20px; }
+    .stat-value { font-size: 22px; }
+    .area-grid { grid-template-columns: 1fr; }
+    .floorplan-wrapper, .elevation-wrapper { padding: 16px; }
+    .section { padding: 32px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-tag">公司新大楼 · 室内抱石馆规划</div>
+    <h1>150㎡ 纯抱石馆 <span>空间规划方案</span></h1>
+    <p class="hero-sub">基于攀岩俱乐部沟通共识设计：纯抱石定位，不做难度攀岩；充分利用150平米空间，岩壁含屋檐仰角设计，配套收纳、拉伸+指力板综合区、洗漱、K板训练及垫外休息区。</p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-value">150㎡</span><span class="stat-label">总面积（15m × 10m）</span></div>
+      <div class="stat-item"><span class="stat-value">~28m</span><span class="stat-label">岩壁总长度</span></div>
+      <div class="stat-item"><span class="stat-value">6大</span><span class="stat-label">功能分区</span></div>
+      <div class="stat-item"><span class="stat-value">4.5m</span><span class="stat-label">建议净高</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 平面布局图 ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">平面布局图（俯视）</h2>
+    <p class="section-desc">房间尺寸 15m（宽）× 10m（深），入口位于南侧。岩壁沿北、西、东三面布置，东墙北段为K板；中央为保护垫落地区，南侧集中配套功能区，西南角为拉伸+指力板综合区。</p>
+    <div class="floorplan-wrapper">
+      <svg class="floorplan-svg" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="padPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+            <rect width="20" height="20" fill="rgba(245,158,11,0.06)"/>
+            <path d="M0 10 L20 10 M10 0 L10 20" stroke="rgba(245,158,11,0.08)" stroke-width="0.5"/>
+          </pattern>
+          <pattern id="wallHatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(245,158,11,0.4)" stroke-width="2"/>
+          </pattern>
+        </defs>
+
+        <!-- Room outline -->
+        <rect x="50" y="40" width="800" height="540" fill="#0f1117" stroke="#3a3f52" stroke-width="3" rx="4"/>
+
+        <!-- Dimension labels -->
+        <text x="450" y="28" text-anchor="middle" fill="#6b7184" font-size="13" font-weight="600">15 m</text>
+        <text x="30" y="310" text-anchor="middle" fill="#6b7184" font-size="13" font-weight="600" transform="rotate(-90,30,310)">10 m</text>
+
+        <!-- ===== NORTH WALL: Main bouldering wall ===== -->
+        <rect x="50" y="40" width="800" height="28" fill="url(#wallHatch)" stroke="#f59e0b" stroke-width="1.5"/>
+        <!-- Wall sections -->
+        <rect x="50" y="40" width="240" height="28" fill="rgba(245,158,11,0.12)" stroke="none"/>
+        <rect x="290" y="40" width="280" height="28" fill="rgba(245,158,11,0.2)" stroke="none"/>
+        <rect x="570" y="40" width="280" height="28" fill="rgba(245,158,11,0.28)" stroke="none"/>
+        <text x="170" y="58" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">垂直/斜面墙 V0-V3</text>
+        <text x="430" y="58" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600">屋檐仰角区 V3-V6</text>
+        <text x="710" y="58" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">大仰角区 V5-V8</text>
+
+        <!-- Overhang indicator (roof) -->
+        <path d="M290 68 L310 100 L550 100 L570 68" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="430" y="88" text-anchor="middle" fill="#f59e0b" font-size="10" opacity="0.7">屋檐探出 ~0.8m</text>
+
+        <!-- ===== WEST WALL ===== -->
+        <rect x="50" y="40" width="28" height="300" fill="url(#wallHatch)" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="64" y="190" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600" transform="rotate(-90,64,190)">西侧转角岩壁</text>
+
+        <!-- ===== EAST WALL: K-board (full north section) ===== -->
+        <rect x="822" y="40" width="28" height="260" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="836" y="170" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="600" transform="rotate(90,836,170)">K板训练区 2.4m</text>
+
+        <!-- ===== CENTER: Crash pad landing area ===== -->
+        <rect x="78" y="68" width="744" height="370" fill="url(#padPattern)" stroke="rgba(245,158,11,0.2)" stroke-width="1" stroke-dasharray="6,4" rx="4"/>
+        <text x="450" y="260" text-anchor="middle" fill="rgba(245,158,11,0.35)" font-size="22" font-weight="800" letter-spacing="4">保护垫落地区</text>
+        <text x="450" y="290" text-anchor="middle" fill="rgba(245,158,11,0.25)" font-size="13">约 74㎡ · 30cm 厚拼接式抱石垫</text>
+
+        <!-- ===== SOUTH SIDE: Functional areas ===== -->
+
+        <!-- Storage area (south-east corner) -->
+        <rect x="680" y="440" width="170" height="120" fill="rgba(45,212,191,0.12)" stroke="#2dd4bf" stroke-width="1.5" rx="4"/>
+        <text x="765" y="475" text-anchor="middle" fill="#2dd4bf" font-size="13" font-weight="700">收纳区</text>
+        <text x="765" y="495" text-anchor="middle" fill="rgba(45,212,191,0.7)" font-size="11">3.0m × 2.5m ≈ 7.5㎡</text>
+        <text x="765" y="515" text-anchor="middle" fill="rgba(45,212,191,0.5)" font-size="10">鞋架 · 储物柜 · 装备架</text>
+        <text x="765" y="532" text-anchor="middle" fill="rgba(45,212,191,0.5)" font-size="10">镁粉桶 · 清洁工具</text>
+
+        <!-- Sink area -->
+        <rect x="570" y="440" width="100" height="70" fill="rgba(248,113,113,0.12)" stroke="#f87171" stroke-width="1.5" rx="4"/>
+        <text x="620" y="468" text-anchor="middle" fill="#f87171" font-size="12" font-weight="700">洗手池</text>
+        <text x="620" y="488" text-anchor="middle" fill="rgba(248,113,113,0.6)" font-size="10">1.5m × 1.0m</text>
+        <text x="620" y="502" text-anchor="middle" fill="rgba(248,113,113,0.5)" font-size="9">洗手液 · 镜子</text>
+
+        <!-- Stretching + Fingerboard combined area (south-west) -->
+        <rect x="78" y="440" width="230" height="120" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5" rx="4"/>
+        <text x="193" y="472" text-anchor="middle" fill="#34d399" font-size="13" font-weight="700">拉伸 + 指力板综合区</text>
+        <text x="193" y="492" text-anchor="middle" fill="rgba(52,211,153,0.7)" font-size="11">4.0m × 2.5m ≈ 10㎡</text>
+        <text x="193" y="512" text-anchor="middle" fill="rgba(52,211,153,0.5)" font-size="10">2张瑜伽垫 · 墙面指力板+引体杆</text>
+        <text x="193" y="530" text-anchor="middle" fill="rgba(52,211,153,0.5)" font-size="10">全身镜 · 泡沫轴 · 筋膜球</text>
+        <!-- Fingerboard on north wall of this area -->
+        <rect x="120" y="440" width="80" height="6" fill="rgba(96,165,250,0.4)" rx="2"/>
+        <text x="160" y="436" text-anchor="middle" fill="#60a5fa" font-size="9">指力板/引体杆（墙面）</text>
+
+        <!-- Rest area (south middle, outside pads) -->
+        <rect x="290" y="470" width="270" height="90" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3" rx="4"/>
+        <text x="425" y="500" text-anchor="middle" fill="#f472b6" font-size="13" font-weight="700">休息区（保护垫外侧）</text>
+        <text x="425" y="522" text-anchor="middle" fill="rgba(244,114,182,0.6)" font-size="11">4-5把露营椅 · 小推车置物架</text>
+        <text x="425" y="540" text-anchor="middle" fill="rgba(244,114,182,0.5)" font-size="10">饮水区 · 毛巾 · 个人物品放置</text>
+
+        <!-- Camping chair icons -->
+        <g transform="translate(310, 548)">
+          <rect x="0" y="0" width="18" height="14" rx="2" fill="rgba(244,114,182,0.3)" stroke="#f472b6" stroke-width="1"/>
+          <rect x="24" y="0" width="18" height="14" rx="2" fill="rgba(244,114,182,0.3)" stroke="#f472b6" stroke-width="1"/>
+        </g>
+        <g transform="translate(500, 548)">
+          <rect x="0" y="0" width="18" height="14" rx="2" fill="rgba(244,114,182,0.3)" stroke="#f472b6" stroke-width="1"/>
+          <rect x="24" y="0" width="18" height="14" rx="2" fill="rgba(244,114,182,0.3)" stroke="#f472b6" stroke-width="1"/>
+        </g>
+        <!-- Trolley icon -->
+        <g transform="translate(410, 548)">
+          <rect x="0" y="2" width="24" height="10" rx="1" fill="none" stroke="#f472b6" stroke-width="1.2"/>
+          <line x1="0" y1="6" x2="24" y2="6" stroke="#f472b6" stroke-width="0.8"/>
+          <circle cx="5" cy="14" r="2" fill="#f472b6"/>
+          <circle cx="19" cy="14" r="2" fill="#f472b6"/>
+        </g>
+
+        <!-- Entrance -->
+        <rect x="380" y="570" width="140" height="10" fill="#0f1117" stroke="#3a3f52" stroke-width="2"/>
+        <text x="450" y="598" text-anchor="middle" fill="#6b7184" font-size="12" font-weight="600">入口 / 出口</text>
+        <path d="M380 575 L450 560 L520 575" fill="none" stroke="#6b7184" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- Compass -->
+        <g transform="translate(830, 560)">
+          <circle cx="0" cy="0" r="18" fill="rgba(255,255,255,0.04)" stroke="#3a3f52" stroke-width="1"/>
+          <text x="0" y="-6" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700">N</text>
+          <text x="0" y="12" text-anchor="middle" fill="#6b7184" font-size="9">S</text>
+          <line x1="0" y1="-3" x2="0" y2="8" stroke="#f59e0b" stroke-width="1.5"/>
+        </g>
+      </svg>
+
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(245,158,11,0.5)"></div>攀岩岩壁（含仰角）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(245,158,11,0.1);border:1px dashed rgba(245,158,11,0.3)"></div>保护垫落地区</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(167,139,250,0.4)"></div>K板训练区</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(52,211,153,0.4)"></div>拉伸+指力板综合区</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(45,212,191,0.4)"></div>收纳区</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(248,113,113,0.4)"></div>洗手池</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(244,114,182,0.4);border:1px dashed #f472b6"></div>休息区（垫外）</div>
+      </div>
+    </div>
+  <!-- ===== 岩壁立面图 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">北墙主岩壁立面图（含屋檐仰角）</h2>
+    <p class="section-desc">岩壁总长15m，分三段难度递进。中段设屋檐仰角结构，探出约0.8m，增加线路丰富度和训练价值。建议岩壁净高4.5m，顶部预留0.5m结构空间。</p>
+    <div class="elevation-wrapper">
+      <svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:960px;margin:0 auto;display:block;">
+        <!-- Ground line -->
+        <line x1="40" y1="370" x2="920" y2="370" stroke="#3a3f52" stroke-width="2"/>
+        <text x="30" y="375" fill="#6b7184" font-size="11">地面</text>
+
+        <!-- Height markers -->
+        <line x1="40" y1="70" x2="920" y2="70" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="25" y="74" fill="#6b7184" font-size="11" text-anchor="end">5.0m</text>
+        <line x1="40" y1="130" x2="920" y2="130" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="25" y="134" fill="#6b7184" font-size="11" text-anchor="end">4.0m</text>
+        <line x1="40" y1="190" x2="920" y2="190" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="25" y="194" fill="#6b7184" font-size="11" text-anchor="end">3.0m</text>
+        <line x1="40" y1="250" x2="920" y2="250" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="25" y="254" fill="#6b7184" font-size="11" text-anchor="end">2.0m</text>
+        <line x1="40" y1="310" x2="920" y2="310" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <text x="25" y="314" fill="#6b7184" font-size="11" text-anchor="end">1.0m</text>
+
+        <!-- ===== Section 1: Vertical/Slab (0-5m) ===== -->
+        <polygon points="80,370 80,90 300,90 300,370" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Slab angle indicator -->
+        <line x1="80" y1="90" x2="95" y2="370" stroke="rgba(245,158,11,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="190" y="115" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">第一段：垂直/微斜面</text>
+        <text x="190" y="135" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 角度 90°~100° · V0-V3</text>
+        <text x="190" y="155" text-anchor="middle" fill="rgba(245,158,11,0.4)" font-size="10">新手友好 · 基础脚法 · 大触点</text>
+        <!-- Holds illustration -->
+        <g fill="rgba(245,158,11,0.25)">
+          <circle cx="120" cy="320" r="6"/><circle cx="160" cy="280" r="5"/><circle cx="200" cy="240" r="6"/>
+          <circle cx="140" cy="200" r="5"/><circle cx="220" cy="180" r="6"/><circle cx="180" cy="140" r="5"/>
+          <circle cx="260" cy="220" r="5"/><circle cx="110" cy="160" r="4"/><circle cx="250" cy="130" r="5"/>
+        </g>
+
+        <!-- ===== Section 2: Overhang with roof (5-10m) ===== -->
+        <!-- Vertical lower part -->
+        <polygon points="300,370 300,190 340,190 340,370" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Overhang sloped part -->
+        <polygon points="340,190 340,130 560,100 560,160" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Roof horizontal part -->
+        <polygon points="560,100 560,160 600,160 600,100" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Roof top -->
+        <line x1="560" y1="100" x2="600" y2="100" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Roof underside indicator -->
+        <text x="450" y="80" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="700">第二段：屋檐仰角区</text>
+        <text x="450" y="400" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 仰角 110°~135° · 屋檐探出0.8m · V3-V6</text>
+        <!-- Angle arc -->
+        <path d="M340 190 A 30 30 0 0 1 365 168" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="375" y="175" fill="#fbbf24" font-size="10">~120°</text>
+        <!-- Roof depth indicator -->
+        <line x1="560" y1="85" x2="600" y2="85" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="560" y1="80" x2="560" y2="90" stroke="#fbbf24" stroke-width="1"/>
+        <line x1="600" y1="80" x2="600" y2="90" stroke="#fbbf24" stroke-width="1"/>
+        <text x="580" y="78" text-anchor="middle" fill="#fbbf24" font-size="9">0.8m</text>
+        <!-- Holds on overhang -->
+        <g fill="rgba(251,191,36,0.3)">
+          <circle cx="320" cy="340" r="5"/><circle cx="370" cy="300" r="5"/><circle cx="400" cy="250" r="6"/>
+          <circle cx="440" cy="210" r="5"/><circle cx="480" cy="180" r="6"/><circle cx="520" cy="155" r="5"/>
+          <circle cx="570" cy="140" r="5"/><circle cx="350" cy="220" r="4"/><circle cx="460" cy="165" r="4"/>
+        </g>
+
+        <!-- ===== Section 3: Steep overhang (10-15m) ===== -->
+        <polygon points="600,370 600,160 640,130 880,110 880,370" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+        <text x="740" y="95" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">第三段：大仰角区</text>
+        <text x="740" y="400" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 仰角 120°~140° · V5-V8</text>
+        <!-- Angle arc -->
+        <path d="M600 160 A 25 25 0 0 1 622 142" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
+        <text x="632" y="148" fill="#fcd34d" font-size="10">~130°</text>
+        <!-- Holds -->
+        <g fill="rgba(252,211,77,0.3)">
+          <circle cx="630" cy="330" r="5"/><circle cx="680" cy="290" r="5"/><circle cx="720" cy="250" r="6"/>
+          <circle cx="760" cy="215" r="5"/><circle cx="800" cy="185" r="6"/><circle cx="840" cy="160" r="5"/>
+          <circle cx="660" cy="200" r="4"/><circle cx="780" cy="165" r="4"/><circle cx="860" cy="200" r="5"/>
+        </g>
+
+        <!-- Crash pad indicator at bottom -->
+        <rect x="60" y="370" width="840" height="20" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+        <text x="480" y="385" text-anchor="middle" fill="rgba(245,158,11,0.4)" font-size="10">30cm 厚保护垫（满铺岩壁前方）</text>
+
+        <!-- Width markers -->
+        <text x="190" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
+        <text x="450" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
+        <text x="740" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 功能区详情 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">六大功能分区详情</h2>
+    <p class="section-desc">每个区域的尺寸、功能配置和设计要点。指力板与拉伸区合并设置，墙面安装指力板，地面铺瑜伽垫，一个空间满足热身、拉伸和力量训练需求。</p>
+    <div class="area-grid">
+
+      <!-- 1. Main climbing area -->
+      <div class="area-card climb">
+        <div class="area-header">
+          <span class="area-name">主攀岩区（抱石墙）</span>
+          <span class="area-size">岩壁 ~28m / 落地 ~74㎡</span>
+        </div>
+        <p class="area-desc">沿北、东、西三面布置岩壁，北墙15m分三段难度递进，含屋檐仰角设计。中央满铺30cm厚拼接式抱石垫，确保坠落安全。</p>
+        <ul class="area-features">
+          <li>北墙：垂直/斜面(V0-V3) + 屋檐仰角(V3-V6) + 大仰角(V5-V8)</li>
+          <li>西墙：转角岩壁，增加 arete 线路和侧身动作</li>
+          <li>岩壁净高建议 4.5m，顶部预留结构空间</li>
+          <li>保护垫 30cm 厚，拼接式，覆盖全部岩壁前方落地区</li>
+          <li>线路定期更换，色标管理（V0-V8 分级）</li>
+        </ul>
+      </div>
+
+      <!-- 2. K-board -->
+      <div class="area-card kboard">
+        <div class="area-header">
+          <span class="area-name">K板训练区（Kilter Board）</span>
+          <span class="area-size">2.4m宽 / ~8㎡</span>
+        </div>
+        <p class="area-desc">位于东墙北段，标准Kilter Board 2.4m宽度。前期成本较高但无需请人定线，APP内有海量线路库，适合进阶训练和社区交流。</p>
+        <ul class="area-features">
+          <li>标准 Kilter Board 2.4m × 3m，可调角度（通常 15°/40°）</li>
+          <li>配套 LED 灯条，APP 控制显示线路</li>
+          <li>内置数万条全球用户共享线路，V0-V14+</li>
+          <li>独立保护垫（与主区域分开，避免干扰）</li>
+          <li>有条件上；预算紧张时可后期加装（预留墙面和电源）</li>
+        </ul>
+      </div>
+
+      <!-- 3. Stretching + Fingerboard combined -->
+      <div class="area-card stretch">
+        <div class="area-header">
+          <span class="area-name">拉伸 + 指力板综合区</span>
+          <span class="area-size">4.0m × 2.5m ≈ 10㎡</span>
+        </div>
+        <p class="area-desc">位于西南角，远离岩壁落地区。指力板安装在北侧墙面，地面铺瑜伽垫，一个空间同时满足热身、拉伸和手指力量训练。俱乐部确认"拉伸的地方不需要多大"，合并后空间利用更高效。</p>
+        <ul class="area-features">
+          <li>墙面安装 2-3 块不同规格指力板（Beastmaker / Tension 等）</li>
+          <li>配套引体向上杆、滑轮训练器（pulley），用于力量和康复训练</li>
+          <li>地面可同时铺开 2 张瑜伽垫（每人 1.8m × 0.6m）</li>
+          <li>墙面安装全身镜，便于动作自查和姿势纠正</li>
+          <li>配备泡沫轴、筋膜球、瑜伽砖等辅助工具</li>
+          <li>地面用木地板或软质地胶，区别于保护垫区域</li>
+          <li>靠近休息区，攀爬间隙可快速拉伸恢复</li>
+        </ul>
+      </div>
+
+      <!-- 5. Storage -->
+      <div class="area-card storage">
+        <div class="area-header">
+          <span class="area-name">收纳区</span>
+          <span class="area-size">3.0m × 2.5m ≈ 7.5㎡</span>
+        </div>
+        <p class="area-desc">位于东南角，靠近入口。集中存放攀岩鞋、镁粉、清洁工具和俱乐部物资，保持馆内整洁。</p>
+        <ul class="area-features">
+          <li>多层鞋架（可容纳 30-40 双攀岩鞋）</li>
+          <li>储物柜（个人物品、俱乐部物资、备用装备）</li>
+          <li>装备架（安全带、快挂、绳索等，虽纯抱石但备用于活动）</li>
+          <li>镁粉桶存放区 + 清洁工具（扫帚、拖把、吸尘器）</li>
+          <li>台面可用于填写签到表、放置消毒液</li>
+        </ul>
+      </div>
+
+      <!-- 6. Wash -->
+      <div class="area-card wash">
+        <div class="area-header">
+          <span class="area-name">洗手池</span>
+          <span class="area-size">1.5m × 1.0m ≈ 1.5㎡</span>
+        </div>
+        <p class="area-desc">位于收纳区旁，靠近入口。攀爬后手上镁粉需要清洗，独立洗手池避免占用卫生间，也便于日常清洁岩壁和装备。</p>
+        <ul class="area-features">
+          <li>单槽洗手池 + 冷热水龙头</li>
+          <li>墙面安装镜子（拉伸区镜子的补充）</li>
+          <li>洗手液、纸巾盒、毛巾挂钩</li>
+          <li>下方储物柜存放清洁用品</li>
+          <li>需预留上下水接口（施工前确认）</li>
+        </ul>
+      </div>
+
+      <!-- 7. Rest area -->
+      <div class="area-card rest">
+        <div class="area-header">
+          <span class="area-name">休息区（保护垫外侧）</span>
+          <span class="area-size">~8㎡</span>
+        </div>
+        <p class="area-desc">沿南侧保护垫外沿布置，不占用攀爬落地区。露营椅轻便灵活可移动，小推车置物架集中放置个人物品和饮水，保持垫面整洁。</p>
+        <ul class="area-features">
+          <li>4-5 把户外露营椅（可折叠收纳，灵活调整数量）</li>
+          <li>1-2 个小推车置物架（多层，带滚轮可移动）</li>
+          <li>饮水区：饮水机或桶装水 + 纸杯</li>
+          <li>毛巾架、垃圾桶、手机放置槽</li>
+          <li>地面用防滑地胶，与保护垫明确区分边界</li>
+          <li>露营椅不使用时可堆叠收纳到收纳区</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 面积分配汇总 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">面积分配汇总</h2>
+    <p class="section-desc">150平米空间的面积分配，核心攀爬区占比最大，配套功能区紧凑高效。</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:28px;overflow-x:auto;">
+      <table class="equip-table" style="border:none;">
+        <colgroup>
+          <col style="width:28%">
+          <col style="width:14%">
+          <col style="width:14%">
+          <col style="width:44%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>功能区域</th>
+            <th>面积（㎡）</th>
+            <th>占比</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">主攀岩区（含保护垫）</span></td>
+            <td>~74</td>
+            <td>49.3%</td>
+            <td>北墙15m + 西墙转角 + 东墙部分，30cm厚保护垫满铺</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--purple-dim);color:var(--purple);">K板训练区</span></td>
+            <td>~8</td>
+            <td>5.3%</td>
+            <td>东墙北段，2.4m标准Kilter Board，独立保护垫</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--green-dim);color:var(--green);">拉伸+指力板综合区</span></td>
+            <td>~10</td>
+            <td>6.7%</td>
+            <td>西南角，墙面指力板+引体杆，地面2人瑜伽垫，全身镜</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--teal-dim);color:var(--teal);">收纳区</span></td>
+            <td>~7.5</td>
+            <td>5.0%</td>
+            <td>东南角，鞋架+储物柜+装备架+清洁工具</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">洗手池</span></td>
+            <td>~1.5</td>
+            <td>1.0%</td>
+            <td>收纳区旁，单槽冷热水，需预留上下水</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:var(--pink-dim);color:var(--pink);">休息区（垫外）</span></td>
+            <td>~8</td>
+            <td>5.3%</td>
+            <td>南侧垫外，露营椅+小推车置物架+饮水区</td>
+          </tr>
+          <tr>
+            <td><span class="equip-cat" style="background:rgba(107,113,132,0.15);color:var(--text-muted);">通道/缓冲/预留</span></td>
+            <td>~41</td>
+            <td>27.3%</td>
+            <td>入口通道、各区域间缓冲、东墙南段释放空间、后期扩展预留</td>
+          </tr>
+          <tr style="background:rgba(245,158,11,0.04);">
+            <td style="font-weight:700;color:var(--accent);">合计</td>
+            <td style="font-weight:700;color:var(--accent);">150</td>
+            <td style="font-weight:700;color:var(--accent);">100%</td>
+            <td style="color:var(--text-secondary);">15m × 10m 标准房间</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 关键设备清单 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">关键设备与物资清单</h2>
+    <p class="section-desc">按优先级分类，P0为必选，P1为推荐，P2为有条件加装。</p>
+    <div style="overflow-x:auto;">
+      <table class="equip-table">
+        <colgroup>
+          <col style="width:22%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:58%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>设备/物资</th>
+            <th>数量</th>
+            <th>优先级</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>攀岩岩壁（含结构）</td>
+            <td>~28m</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>含屋檐仰角结构，模块化面板，可更换岩点</td>
+          </tr>
+          <tr>
+            <td>抱石保护垫</td>
+            <td>满铺 ~74㎡</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>30cm厚，拼接式，防滑面料，覆盖全部落地区</td>
+          </tr>
+          <tr>
+            <td>岩点（套装）</td>
+            <td>200-300个</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>各尺寸各类型，色标分级，含螺栓和T-nut</td>
+          </tr>
+          <tr>
+            <td>攀岩鞋（公用）</td>
+            <td>15-20双</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>各尺码，收纳区鞋架存放，定期清洁</td>
+          </tr>
+          <tr>
+            <td>镁粉 + 镁粉球</td>
+            <td>若干</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>收纳区集中存放，攀爬区入口放置</td>
+          </tr>
+          <tr>
+            <td>指力板</td>
+            <td>2-3块</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>不同规格（大触点/小触点），墙面安装</td>
+          </tr>
+          <tr>
+            <td>引体向上杆 + 滑轮训练器</td>
+            <td>各1</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>指力板区配套，用于力量和康复训练</td>
+          </tr>
+          <tr>
+            <td>瑜伽垫 + 泡沫轴 + 筋膜球</td>
+            <td>2套+</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>拉伸区使用，收纳区备用存放</td>
+          </tr>
+          <tr>
+            <td>露营椅</td>
+            <td>4-5把</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>可折叠，保护垫外侧休息区，不用时收纳</td>
+          </tr>
+          <tr>
+            <td>小推车置物架</td>
+            <td>1-2个</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>多层带滚轮，休息区放置个人物品和饮水</td>
+          </tr>
+          <tr>
+            <td>洗手池（含上下水）</td>
+            <td>1组</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>单槽冷热水，施工前确认上下水接口位置</td>
+          </tr>
+          <tr>
+            <td>全身镜</td>
+            <td>2面</td>
+            <td><span class="equip-cat" style="background:var(--accent-dim);color:var(--accent);">P1 推荐</span></td>
+            <td>拉伸区1面（动作自查），洗手池旁1面</td>
+          </tr>
+          <tr>
+            <td>Kilter Board（K板）</td>
+            <td>1套</td>
+            <td><span class="equip-cat" style="background:var(--green-dim);color:var(--green);">P2 可选</span></td>
+            <td>2.4m标准款，含LED灯条和APP，前期成本高但免定线</td>
+          </tr>
+          <tr>
+            <td>饮水机/桶装水</td>
+            <td>1台</td>
+            <td><span class="equip-cat" style="background:var(--green-dim);color:var(--green);">P2 可选</span></td>
+            <td>休息区配置，或用桶装水+水泵替代</td>
+          </tr>
+          <tr>
+            <td>蓝牙音箱</td>
+            <td>1个</td>
+            <td><span class="equip-cat" style="background:var(--green-dim);color:var(--green);">P2 可选</span></td>
+            <td>营造氛围，注意音量控制不影响办公区</td>
+          </tr>
+          <tr>
+            <td>急救箱</td>
+            <td>1个</td>
+            <td><span class="equip-cat" style="background:var(--red-dim);color:var(--red);">P0 必选</span></td>
+            <td>收纳区固定位置，含绷带、消毒、冰敷袋等</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 设计要点与沟通共识 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">设计要点与沟通共识</h2>
+    <p class="section-desc">基于攀岩俱乐部群内讨论整理的关键决策和注意事项，供供应商设计方案参考。</p>
+    <div class="notes-grid">
+      <div class="note-card">
+        <h4>纯抱石定位，不做难度攀岩</h4>
+        <p>俱乐部一致建议纯抱石馆。难度攀岩风险高：无人看护时保护锁未扣好有坠落危险；自动保护设备需定期检修，增加人工维护费用。150平米空间做难度也不够。</p>
+      </div>
+      <div class="note-card">
+        <h4>先定大方向，再让供应商出方案</h4>
+        <p>确认位置、面积、纯抱石定位、各功能区规划后，再让供应商根据需求做设计方案。避免反过来先看供应商方案再提需求，导致建议缺乏针对性。</p>
+      </div>
+      <div class="note-card">
+        <h4>岩壁必须有仰角/屋檐设计</h4>
+        <p>纯垂直墙线路单一、训练价值有限。北墙中段设置屋檐仰角（探出约0.8m），东段大仰角，增加线路丰富度和进阶训练空间。斜面+垂直+仰角覆盖全难度等级。</p>
+      </div>
+      <div class="note-card">
+        <h4>K板有条件上，预留接口</h4>
+        <p>Kilter Board前期成本较高，但APP内置海量线路无需请人定线，长期性价比高。预算紧张时可后期加装，但施工阶段需预留墙面、电源和数据接口。</p>
+      </div>
+      <div class="note-card">
+        <h4>拉伸与指力板合并，空间高效利用</h4>
+        <p>俱乐部确认"拉伸的地方不需要多大"，将指力板与拉伸区合并设置在西南角：墙面装指力板和引体杆，地面铺瑜伽垫，一个空间同时满足热身、拉伸和手指力量训练。健身房在3楼太远，这些功能必须在馆内解决。</p>
+      </div>
+      <div class="note-card">
+        <h4>休息区在保护垫外侧</h4>
+        <p>露营椅和小推车置物架布置在保护垫外侧沿墙区域，不占用攀爬落地区，确保坠落安全。露营椅可折叠收纳，灵活调整数量，保持空间通透。</p>
+      </div>
+      <div class="note-card">
+        <h4>洗手池需提前确认上下水</h4>
+        <p>攀爬后镁粉清洗需求明确，独立洗手池避免占用卫生间。施工前必须确认上下水接口位置，如无法接入可考虑替代方案（免安装洗手台+储水桶）。</p>
+      </div>
+      <div class="note-card">
+        <h4>净高建议4.5m以上</h4>
+        <p>抱石墙建议净高4.5m（含顶部0.5m结构空间），确保仰角线路有足够高度。实际净高需现场测量，如限高可适当降低岩壁高度，但仰角段不低于3.5m。</p>
+      </div>
+      <div class="note-card">
+        <h4>安全与管理</h4>
+        <p>入口张贴安全须知和攀爬规则；保护垫定期检查拼接缝隙；急救箱固定位置且全员知晓；建议指定场馆管理员，定期检查装备和岩壁状态。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>公司抱石馆空间规划方案 · 150㎡ · 基于攀岩俱乐部沟通共识整理</p>
+    <p style="margin-top:6px;opacity:0.6;">本方案为空间规划参考，最终设计以供应商现场勘测和专业方案为准</p>
+  </div>
+</footer>
+
+</body>
+</html>
