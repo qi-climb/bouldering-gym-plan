@@ -355,17 +355,17 @@
 
         <!-- ===== NORTH WALL: Main bouldering wall ===== -->
         <rect x="50" y="40" width="800" height="28" fill="url(#wallHatch)" stroke="#f59e0b" stroke-width="1.5"/>
-        <!-- Wall sections -->
-        <rect x="50" y="40" width="240" height="28" fill="rgba(245,158,11,0.12)" stroke="none"/>
-        <rect x="290" y="40" width="280" height="28" fill="rgba(245,158,11,0.2)" stroke="none"/>
-        <rect x="570" y="40" width="280" height="28" fill="rgba(245,158,11,0.28)" stroke="none"/>
-        <text x="170" y="58" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">垂直/斜面墙 V0-V3</text>
-        <text x="430" y="58" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600">屋檐仰角区 V3-V6</text>
-        <text x="710" y="58" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">大仰角区 V5-V8</text>
+        <!-- Wall sections (from easy to hard: slab -> vertical -> overhang) -->
+        <rect x="50" y="40" width="240" height="28" fill="rgba(52,211,153,0.15)" stroke="none"/>
+        <rect x="290" y="40" width="280" height="28" fill="rgba(96,165,250,0.12)" stroke="none"/>
+        <rect x="570" y="40" width="280" height="28" fill="rgba(245,158,11,0.22)" stroke="none"/>
+        <text x="170" y="58" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">静态/斜面区（新手友好）</text>
+        <text x="430" y="58" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="600">垂直墙区（基础线路）</text>
+        <text x="710" y="58" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">屋檐仰角区（唯一仰角）</text>
 
-        <!-- Overhang indicator (roof) -->
-        <path d="M290 68 L310 100 L550 100 L570 68" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="430" y="88" text-anchor="middle" fill="#f59e0b" font-size="10" opacity="0.7">屋檐探出 ~0.8m</text>
+        <!-- Overhang indicator (roof) - only one overhang section -->
+        <path d="M570 68 L590 100 L830 100 L850 68" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="710" y="88" text-anchor="middle" fill="#f59e0b" font-size="10" opacity="0.7">屋檐探出 ~0.8m（唯一仰角）</text>
 
         <!-- ===== WEST WALL ===== -->
         <rect x="50" y="40" width="28" height="300" fill="url(#wallHatch)" stroke="#f59e0b" stroke-width="1.5"/>
@@ -453,7 +453,7 @@
 <section class="section" style="padding-top:0;">
   <div class="container">
     <h2 class="section-title">北墙主岩壁立面图（含屋檐仰角）</h2>
-    <p class="section-desc">岩壁总长15m，分三段难度递进。中段设屋檐仰角结构，探出约0.8m，增加线路丰富度和训练价值。建议岩壁净高4.5m，顶部预留0.5m结构空间。</p>
+    <p class="section-desc">北墙总长15m，分三段从易到难：静态斜面区（新手友好，练脚法平衡）、垂直墙区（基础线路）、屋檐仰角区（全馆唯一一处仰角，探出约0.8m）。不预设固定等级，线路定期更换。建议岩壁净高4.5m，顶部预留0.5m结构空间。</p>
     <div class="elevation-wrapper">
       <svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:960px;margin:0 auto;display:block;">
         <!-- Ground line -->
@@ -472,59 +472,64 @@
         <line x1="40" y1="310" x2="920" y2="310" stroke="#3a3f52" stroke-width="0.5" stroke-dasharray="4,4"/>
         <text x="25" y="314" fill="#6b7184" font-size="11" text-anchor="end">1.0m</text>
 
-        <!-- ===== Section 1: Vertical/Slab (0-5m) ===== -->
-        <polygon points="80,370 80,90 300,90 300,370" fill="rgba(245,158,11,0.08)" stroke="#f59e0b" stroke-width="2"/>
-        <!-- Slab angle indicator -->
-        <line x1="80" y1="90" x2="95" y2="370" stroke="rgba(245,158,11,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
-        <text x="190" y="115" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">第一段：垂直/微斜面</text>
-        <text x="190" y="135" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 角度 90°~100° · V0-V3</text>
-        <text x="190" y="155" text-anchor="middle" fill="rgba(245,158,11,0.4)" font-size="10">新手友好 · 基础脚法 · 大触点</text>
+        <!-- ===== Section 1: Static/Slab (left, 5m) - beginner friendly ===== -->
+        <polygon points="80,370 92,90 352,90 340,370" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="2"/>
+        <!-- Slab angle indicator (wall leans back) -->
+        <line x1="92" y1="90" x2="80" y2="370" stroke="rgba(52,211,153,0.4)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="210" y="115" text-anchor="middle" fill="#34d399" font-size="13" font-weight="700">第一段：静态 / 斜面区</text>
+        <text x="210" y="135" text-anchor="middle" fill="rgba(52,211,153,0.7)" font-size="11">5m宽 · 角度 ~85° · 新手友好</text>
+        <text x="210" y="155" text-anchor="middle" fill="rgba(52,211,153,0.45)" font-size="10">练脚法 · 平衡感 · 重心控制 · 大触点</text>
+        <!-- Slab angle arc -->
+        <path d="M80 350 A 20 20 0 0 0 86 332" fill="none" stroke="#34d399" stroke-width="1.5"/>
+        <text x="100" y="340" fill="#34d399" font-size="10">~85°</text>
         <!-- Holds illustration -->
-        <g fill="rgba(245,158,11,0.25)">
-          <circle cx="120" cy="320" r="6"/><circle cx="160" cy="280" r="5"/><circle cx="200" cy="240" r="6"/>
-          <circle cx="140" cy="200" r="5"/><circle cx="220" cy="180" r="6"/><circle cx="180" cy="140" r="5"/>
-          <circle cx="260" cy="220" r="5"/><circle cx="110" cy="160" r="4"/><circle cx="250" cy="130" r="5"/>
+        <g fill="rgba(52,211,153,0.25)">
+          <circle cx="120" cy="320" r="6"/><circle cx="165" cy="280" r="5"/><circle cx="210" cy="240" r="6"/>
+          <circle cx="150" cy="200" r="5"/><circle cx="250" cy="180" r="6"/><circle cx="195" cy="140" r="5"/>
+          <circle cx="290" cy="220" r="5"/><circle cx="115" cy="160" r="4"/><circle cx="280" cy="130" r="5"/>
         </g>
 
-        <!-- ===== Section 2: Overhang with roof (5-10m) ===== -->
-        <!-- Vertical lower part -->
-        <polygon points="300,370 300,190 340,190 340,370" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="2"/>
-        <!-- Overhang sloped part -->
-        <polygon points="340,190 340,130 560,100 560,160" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2"/>
-        <!-- Roof horizontal part -->
-        <polygon points="560,100 560,160 600,160 600,100" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="2"/>
-        <!-- Roof top -->
-        <line x1="560" y1="100" x2="600" y2="100" stroke="#f59e0b" stroke-width="2"/>
-        <!-- Roof underside indicator -->
-        <text x="450" y="80" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="700">第二段：屋檐仰角区</text>
-        <text x="450" y="400" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 仰角 110°~135° · 屋檐探出0.8m · V3-V6</text>
-        <!-- Angle arc -->
-        <path d="M340 190 A 30 30 0 0 1 365 168" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
-        <text x="375" y="175" fill="#fbbf24" font-size="10">~120°</text>
-        <!-- Roof depth indicator -->
-        <line x1="560" y1="85" x2="600" y2="85" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="560" y1="80" x2="560" y2="90" stroke="#fbbf24" stroke-width="1"/>
-        <line x1="600" y1="80" x2="600" y2="90" stroke="#fbbf24" stroke-width="1"/>
-        <text x="580" y="78" text-anchor="middle" fill="#fbbf24" font-size="9">0.8m</text>
-        <!-- Holds on overhang -->
-        <g fill="rgba(251,191,36,0.3)">
-          <circle cx="320" cy="340" r="5"/><circle cx="370" cy="300" r="5"/><circle cx="400" cy="250" r="6"/>
-          <circle cx="440" cy="210" r="5"/><circle cx="480" cy="180" r="6"/><circle cx="520" cy="155" r="5"/>
-          <circle cx="570" cy="140" r="5"/><circle cx="350" cy="220" r="4"/><circle cx="460" cy="165" r="4"/>
-        </g>
-
-        <!-- ===== Section 3: Steep overhang (10-15m) ===== -->
-        <polygon points="600,370 600,160 640,130 880,110 880,370" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
-        <text x="740" y="95" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">第三段：大仰角区</text>
-        <text x="740" y="400" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 仰角 120°~140° · V5-V8</text>
-        <!-- Angle arc -->
-        <path d="M600 160 A 25 25 0 0 1 622 142" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
-        <text x="632" y="148" fill="#fcd34d" font-size="10">~130°</text>
+        <!-- ===== Section 2: Vertical (middle, 5m) - basic routes ===== -->
+        <polygon points="340,370 340,90 600,90 600,370" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
+        <text x="470" y="115" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="700">第二段：垂直墙区</text>
+        <text x="470" y="135" text-anchor="middle" fill="rgba(96,165,250,0.7)" font-size="11">5m宽 · 角度 90° · 基础线路</text>
+        <text x="470" y="155" text-anchor="middle" fill="rgba(96,165,250,0.45)" font-size="10">综合运用 · 线路丰富 · 定期更换定线</text>
+        <!-- 90° indicator -->
+        <path d="M340 350 L360 350 L360 370" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+        <text x="370" y="365" fill="#60a5fa" font-size="10">90°</text>
         <!-- Holds -->
-        <g fill="rgba(252,211,77,0.3)">
-          <circle cx="630" cy="330" r="5"/><circle cx="680" cy="290" r="5"/><circle cx="720" cy="250" r="6"/>
-          <circle cx="760" cy="215" r="5"/><circle cx="800" cy="185" r="6"/><circle cx="840" cy="160" r="5"/>
-          <circle cx="660" cy="200" r="4"/><circle cx="780" cy="165" r="4"/><circle cx="860" cy="200" r="5"/>
+        <g fill="rgba(96,165,250,0.25)">
+          <circle cx="380" cy="330" r="5"/><circle cx="420" cy="290" r="6"/><circle cx="460" cy="250" r="5"/>
+          <circle cx="500" cy="210" r="6"/><circle cx="540" cy="175" r="5"/><circle cx="570" cy="140" r="5"/>
+          <circle cx="400" cy="190" r="4"/><circle cx="480" cy="155" r="4"/><circle cx="560" cy="230" r="5"/>
+          <circle cx="440" cy="310" r="4"/><circle cx="520" cy="280" r="5"/>
+        </g>
+
+        <!-- ===== Section 3: Overhang with roof (right, 5m) - ONLY overhang ===== -->
+        <!-- Vertical lower part -->
+        <polygon points="600,370 600,210 640,210 640,370" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Overhang sloped part -->
+        <polygon points="640,210 640,150 860,120 860,180" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Roof horizontal part -->
+        <polygon points="860,120 860,180 880,180 880,120" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Roof top line -->
+        <line x1="860" y1="120" x2="880" y2="120" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Labels -->
+        <text x="740" y="95" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">第三段：屋檐仰角区（唯一仰角）</text>
+        <text x="740" y="400" text-anchor="middle" fill="rgba(245,158,11,0.6)" font-size="11">5m宽 · 仰角 ~120° · 屋檐探出0.8m · 进阶挑战</text>
+        <!-- Angle arc -->
+        <path d="M640 210 A 25 25 0 0 1 662 192" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="672" y="198" fill="#fbbf24" font-size="10">~120°</text>
+        <!-- Roof depth indicator -->
+        <line x1="860" y1="105" x2="880" y2="105" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="860" y1="100" x2="860" y2="110" stroke="#fbbf24" stroke-width="1"/>
+        <line x1="880" y1="100" x2="880" y2="110" stroke="#fbbf24" stroke-width="1"/>
+        <text x="870" y="98" text-anchor="middle" fill="#fbbf24" font-size="9">0.8m</text>
+        <!-- Holds on overhang -->
+        <g fill="rgba(245,158,11,0.3)">
+          <circle cx="620" cy="340" r="5"/><circle cx="660" cy="300" r="5"/><circle cx="700" cy="260" r="6"/>
+          <circle cx="730" cy="220" r="5"/><circle cx="770" cy="190" r="6"/><circle cx="810" cy="165" r="5"/>
+          <circle cx="850" cy="150" r="5"/><circle cx="650" cy="240" r="4"/><circle cx="790" cy="175" r="4"/>
         </g>
 
         <!-- Crash pad indicator at bottom -->
@@ -532,8 +537,8 @@
         <text x="480" y="385" text-anchor="middle" fill="rgba(245,158,11,0.4)" font-size="10">30cm 厚保护垫（满铺岩壁前方）</text>
 
         <!-- Width markers -->
-        <text x="190" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
-        <text x="450" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
+        <text x="210" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
+        <text x="470" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
         <text x="740" y="425" text-anchor="middle" fill="#6b7184" font-size="11">5m</text>
       </svg>
     </div>
@@ -548,10 +553,13 @@
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
       <img src="assets/scene-render.jpg" alt="抱石馆实景效果图" style="width:100%;display:block;object-fit:cover;"/>
       <div style="padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:24px;flex-wrap:wrap;">
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--accent);font-weight:600;">北墙</span>：垂直+屋檐仰角+大仰角三段式岩壁</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--green);font-weight:600;">西南角</span>：拉伸+指力板综合区，墙面全身镜</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">东南角</span>：收纳区+洗手池，木质储物柜</div>
-        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--pink);font-weight:600;">垫外侧</span>：露营椅沿过道灵活放置</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#34d399;font-weight:600;">北墙左段</span>：静态/斜面区（新手友好）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:#60a5fa;font-weight:600;">北墙中段</span>：垂直墙区（基础线路）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--accent);font-weight:600;">北墙右段</span>：屋檐仰角区（唯一仰角）</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--green);font-weight:600;">左前方</span>：拉伸+指力板综合区</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">右前方</span>：收纳区+洗手池</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--purple);font-weight:600;">右侧墙</span>：K板训练区</div>
+        <div style="font-size:13px;color:var(--text-secondary);"><span style="color:var(--pink);font-weight:600;">前景过道</span>：露营椅+小推车（垫外侧）</div>
       </div>
     </div>
   </div>
@@ -570,13 +578,14 @@
           <span class="area-name">主攀岩区（抱石墙）</span>
           <span class="area-size">岩壁 ~28m / 落地 ~74㎡</span>
         </div>
-        <p class="area-desc">沿北、东、西三面布置岩壁，北墙15m分三段难度递进，含屋檐仰角设计。中央满铺30cm厚拼接式抱石垫，确保坠落安全。</p>
+        <p class="area-desc">沿北、西、东三面布置岩壁，北墙15m分三段从易到难：静态斜面区（新手友好，练脚法平衡）、垂直墙区（基础线路）、屋檐仰角区（全馆唯一一处仰角，进阶挑战）。不固定线路等级，定期更换定线，适配当前以新手为主的用户群体。中央满铺30cm厚拼接式抱石垫，确保坠落安全。</p>
         <ul class="area-features">
-          <li>北墙：垂直/斜面(V0-V3) + 屋檐仰角(V3-V6) + 大仰角(V5-V8)</li>
+          <li>北墙三段：静态斜面(~85°) → 垂直墙(90°) → 屋檐仰角(~120°，唯一仰角)</li>
           <li>西墙：转角岩壁，增加 arete 线路和侧身动作</li>
           <li>岩壁净高建议 4.5m，顶部预留结构空间</li>
           <li>保护垫 30cm 厚，拼接式，覆盖全部岩壁前方落地区</li>
-          <li>线路定期更换，色标管理（V0-V8 分级）</li>
+          <li>线路定期更换，不固定等级，色标管理线路难度</li>
+          <li>当前以新手为主，斜面和垂直墙区域占比 2/3</li>
         </ul>
       </div>
 
@@ -865,8 +874,8 @@
         <p>确认位置、面积、纯抱石定位、各功能区规划后，再让供应商根据需求做设计方案。避免反过来先看供应商方案再提需求，导致建议缺乏针对性。</p>
       </div>
       <div class="note-card">
-        <h4>岩壁必须有仰角/屋檐设计</h4>
-        <p>纯垂直墙线路单一、训练价值有限。北墙中段设置屋檐仰角（探出约0.8m），东段大仰角，增加线路丰富度和进阶训练空间。斜面+垂直+仰角覆盖全难度等级。</p>
+        <h4>岩壁设计：一处仰角+一处静态区，不固定等级</h4>
+        <p>当前用户以新手为主，北墙15m分三段从易到难：静态斜面区（练脚法和平衡）、垂直墙区（基础线路）、屋檐仰角区（全馆唯一一处仰角，进阶挑战）。不预设固定V等级，线路定期更换定线，色标管理难度，让新手有足够的基础练习空间，同时保留进阶挑战。</p>
       </div>
       <div class="note-card">
         <h4>K板有条件上，预留接口</h4>
@@ -882,7 +891,9 @@
       </div>
       <div class="note-card">
         <h4>三个功能区面积合理性评估</h4>
-        <p><b>拉伸+指力板 10㎡</b>（4.0m×2.5m）：2张瑜伽垫约2.2㎡，指力板悬垂区约2㎡，加通道和镜子，10㎡合理偏宽松。<b>洗手池 1.8㎡</b>（1.5m×1.2m）：单槽+站立空间+下方储物柜，紧凑够用。<b>收纳区 7.5㎡</b>（3.0m×2.5m）：鞋架+储物柜+装备架+清洁工具+急救箱，沿墙布置加操作通道，7.5㎡合理。</p>
+        <p style="margin-bottom:8px;"><b>拉伸+指力板 10㎡</b>（4.0m×2.5m）：2张瑜伽垫约2.2㎡，指力板悬垂区约2㎡，加通道和镜子，10㎡合理偏宽松。</p>
+        <p style="margin-bottom:8px;"><b>洗手池 1.8㎡</b>（1.5m×1.2m）：单槽+站立空间+下方储物柜，紧凑够用。</p>
+        <p><b>收纳区 7.5㎡</b>（3.0m×2.5m）：鞋架+储物柜+装备架+清洁工具+急救箱，沿墙布置加操作通道，7.5㎡合理。</p>
       </div>
       <div class="note-card">
         <h4>洗手池需提前确认上下水</h4>
